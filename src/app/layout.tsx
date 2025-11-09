@@ -5,6 +5,7 @@ import '../styles/globals.css';
 import Navbar from '@/components/common/Navbar';
 import Footer from '@/components/common/Footer'; // ✅ enable footer
 import AOSProvider from '@/components/providers/AOSProvider';
+import GlobalLoader from "@/components/GlobalLoader";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -31,16 +32,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-white text-gray-900`}
       >
-        <AOSProvider>
-          {/* 🧭 Global Navbar */}
-          <Navbar />
-
-          {/* 🧩 Page content — expands to fill remaining space */}
-          <main className="flex-grow">{children}</main>
-
-          {/* 📜 Footer stays pinned at bottom */}
-          <Footer />
-        </AOSProvider>
+         <GlobalLoader>
+            <AOSProvider>
+              <Navbar />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </AOSProvider>
+        </GlobalLoader>
       </body>
     </html>
   );

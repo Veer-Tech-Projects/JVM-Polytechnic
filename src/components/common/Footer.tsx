@@ -15,6 +15,7 @@ import {
   Instagram,
   Linkedin,
 } from "lucide-react";
+import { departments } from "@/data/departments"; // ✅ imported same as navbar
 
 const Footer: React.FC = () => {
   const [views, setViews] = useState<number>(0);
@@ -94,11 +95,16 @@ const Footer: React.FC = () => {
               Departments
             </h3>
             <ul className="space-y-2 text-gray-300 text-sm mb-6">
-              <li><Link href="/departments/computer-science" className="hover:text-orange-500 transition">Computer Science</Link></li>
-              <li><Link href="/departments/electronics" className="hover:text-orange-500 transition">Electronics</Link></li>
-              <li><Link href="/departments/mechanical" className="hover:text-orange-500 transition">Mechanical</Link></li>
-              <li><Link href="/departments/civil" className="hover:text-orange-500 transition">Civil</Link></li>
-              <li><Link href="/departments/electrical" className="hover:text-orange-500 transition">Electrical</Link></li>
+              {departments.map((dept) => (
+                <li key={dept.slug}>
+                  <Link
+                    href={`/departments/${dept.slug}`}
+                    className="hover:text-orange-500 transition"
+                  >
+                    {dept.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
 
             <div className="flex items-center gap-4 mt-8">
@@ -109,17 +115,15 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* ✅ Column 3: Quick Links (desktop only) */}
+          {/* ✅ Column 3: Quick Links (desktop only, updated) */}
           <div className="hidden md:block">
             <h3 className="font-semibold text-white mb-4 uppercase tracking-wide">
               Quick Links
             </h3>
             <ul className="space-y-2 text-gray-300 text-sm">
+              <li><Link href="/vision" className="hover:text-orange-500 transition">Vision & Mission</Link></li>
               <li><Link href="/about" className="hover:text-orange-500 transition">About Us</Link></li>
               <li><Link href="/contact" className="hover:text-orange-500 transition">Contact Us</Link></li>
-              <li><Link href="/events" className="hover:text-orange-500 transition">Events</Link></li>
-              <li><Link href="/career" className="hover:text-orange-500 transition">Career Centre</Link></li>
-              <li><Link href="/campus" className="hover:text-orange-500 transition">Campus Tour</Link></li>
             </ul>
           </div>
 
@@ -140,25 +144,28 @@ const Footer: React.FC = () => {
                 Departments
               </h3>
               <ul className="space-y-1.5 text-gray-300 text-xs">
-                <li><Link href="/departments/computer-science" className="hover:text-orange-500">Computer Science</Link></li>
-                <li><Link href="/departments/electronics" className="hover:text-orange-500">Electronics</Link></li>
-                <li><Link href="/departments/mechanical" className="hover:text-orange-500">Mechanical</Link></li>
-                <li><Link href="/departments/civil" className="hover:text-orange-500">Civil</Link></li>
-                <li><Link href="/departments/electrical" className="hover:text-orange-500">Electrical</Link></li>
+                {departments.map((dept) => (
+                  <li key={dept.slug}>
+                    <Link
+                      href={`/departments/${dept.slug}`}
+                      className="hover:text-orange-500"
+                    >
+                      {dept.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* Quick Links */}
+            {/* Quick Links (updated mobile) */}
             <div>
               <h3 className="font-semibold text-white mb-3 uppercase text-sm tracking-wide">
                 Quick Links
               </h3>
               <ul className="space-y-1.5 text-gray-300 text-xs">
+                <li><Link href="/vision" className="hover:text-orange-500">Vision & Mission</Link></li>
                 <li><Link href="/about" className="hover:text-orange-500">About Us</Link></li>
                 <li><Link href="/contact" className="hover:text-orange-500">Contact Us</Link></li>
-                <li><Link href="/events" className="hover:text-orange-500">Events</Link></li>
-                <li><Link href="/career" className="hover:text-orange-500">Career Centre</Link></li>
-                <li><Link href="/campus" className="hover:text-orange-500">Campus Tour</Link></li>
               </ul>
             </div>
           </div>
@@ -172,11 +179,10 @@ const Footer: React.FC = () => {
               <Link href="https://linkedin.com" className="hover:text-orange-500"><Linkedin className="w-4 h-4" /></Link>
             </div>
 
-           <div className="flex items-center gap-1 bg-orange-600 text-white px-3 py-1.5 rounded-md text-xs font-semibold shadow-md mr-18 md:mr-0">
+            <div className="flex items-center gap-1 bg-orange-600 text-white px-3 py-1.5 rounded-md text-xs font-semibold shadow-md mr-18 md:mr-0">
               <Eye className="w-3.5 h-3.5 animate-eye-blink origin-center" />
               {views.toLocaleString()}+
             </div>
-
           </div>
         </div>
 

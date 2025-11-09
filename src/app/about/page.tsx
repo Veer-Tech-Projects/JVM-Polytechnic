@@ -2,12 +2,19 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 export default function AboutPage() {
   return (
     <section className="flex flex-col md:flex-row items-start justify-between max-w-7xl mx-auto px-6 md:px-10 py-16 gap-12">
       {/* LEFT: Curved Image */}
-      <div className="flex-shrink-0 w-full md:w-1/2 flex justify-center md:justify-start">
+      <motion.div
+        className="flex-shrink-0 w-full md:w-1/2 flex justify-center md:justify-start"
+        initial={{ opacity: 0, x: -60 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        viewport={{ once: true }}
+      >
         <div className="relative w-[95%] md:w-[100%] max-w-[650px]">
           <Image
             src="/images/about/about2.webp"
@@ -18,10 +25,16 @@ export default function AboutPage() {
             priority
           />
         </div>
-      </div>
+      </motion.div>
 
       {/* RIGHT: About Content */}
-      <div className="md:w-1/2 flex flex-col justify-center text-left md:mt-10 lg:mt-16">
+      <motion.div
+        className="md:w-1/2 flex flex-col justify-center text-left md:mt-10 lg:mt-16"
+        initial={{ opacity: 0, x: 60 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+        viewport={{ once: true }}
+      >
         {/* Orange Top Bar */}
         <div className="w-10 h-[3px] bg-[#F05A28] mb-4"></div>
 
@@ -40,7 +53,7 @@ export default function AboutPage() {
         <p className="text-sm sm:text-base text-slate-700 leading-tight mb-4">
           Guided by a team of experienced faculty and visionary leadership, JVM Polytechnic continues to foster an environment of creativity, research, and collaboration — preparing future technocrats to make meaningful contributions to society.
         </p>
-      </div>
+      </motion.div>
     </section>
   );
 }

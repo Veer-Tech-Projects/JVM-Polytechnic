@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Menu, ChevronDown } from 'lucide-react';
@@ -20,11 +21,12 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Home', href: '/' },
   {
     label: 'Departments',
-    href: '/departments',
-    dropdown: departments.map((d) => ({ label: d.name, href: `/departments/${d.slug}` })),
+    dropdown: departments.map((d) => ({
+      label: d.name,
+      href: `/departments/${d.slug}`,
+    })),
   },
-  { label: 'Events', href: '/events' },
-  { label: 'Vision', href: '/vision' },
+  { label: 'Vision & Mission', href: '/vision' },
   { label: 'About Us', href: '/about' },
   { label: 'Contact Us', href: '/contact' },
 ];
@@ -44,7 +46,11 @@ export default function Navbar() {
     dropdownRef.current = window.setTimeout(() => setOpenDropdown(null), 120);
   }
 
-  const dropdownVariants = { hidden: { opacity: 0, y: -8 }, visible: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -8 } };
+  const dropdownVariants = {
+    hidden: { opacity: 0, y: -8 },
+    visible: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -8 },
+  };
 
   return (
     <>
@@ -54,18 +60,39 @@ export default function Navbar() {
             {/* Left: logo */}
             <div className="flex items-center gap-4">
               <Link href="/" className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-md bg-[#f15a29] text-white flex items-center justify-center font-bold">
-                  J
+                <div className="relative h-12 w-12">
+                  <Image
+                    src="/images/logo/jvm-logo2.png"
+                    alt="JVM Polytechnic Logo"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
                 </div>
-                <span className="text-lg font-semibold text-slate-900">JVM Polytechnic</span>
+                <span className="text-base md:text-lg font-semibold text-slate-900">
+                  JVM Polytechnic Terdal
+                </span>
               </Link>
             </div>
 
-            {/* Middle: nav items (centered) */}
-            <nav className="hidden lg:flex items-center gap-3" aria-label="Primary">
+            {/* Middle: nav items */}
+            <nav
+              className="hidden lg:flex items-center gap-3"
+              aria-label="Primary"
+            >
               {NAV_ITEMS.map((item) => {
                 const hasDropdown = !!item.dropdown?.length;
-                const isActive = item.href && (pathname === item.href || pathname.startsWith(item.href + '/'));
+
+                // ✅ Special logic: mark "Departments" as active if pathname starts with /departments
+                const isActive =
+                  (item.href &&
+                    (pathname === item.href ||
+                      pathname.startsWith(item.href + '/'))) ||
+                  (item.label === 'Departments' &&
+                    pathname.startsWith('/departments'));
+
+                const isDepartmentsHovered =
+                  openDropdown === 'Departments' && item.label === 'Departments';
 
                 return (
                   <div
@@ -76,12 +103,24 @@ export default function Navbar() {
                   >
                     <Link
                       href={item.href ?? '#'}
-                      className={`px-4 py-2 rounded-md inline-flex items-center gap-2 text-sm font-medium transition
-                        ${isActive ? 'bg-[#f15a29] text-white' : 'text-slate-800 hover:text-[#f15a29]'}`}
-                      onClick={() => setOpenDropdown(null)}
+                      className={`px-4 py-2 rounded-md inline-flex items-center gap-2 text-sm font-medium transition duration-200
+                        ${
+                          isActive
+                            ? 'bg-[#f15a29] text-white'
+                            : 'text-slate-800 hover:text-[#f15a29]'
+                        }`}
+                      onClick={() => {
+                        if (!hasDropdown) setOpenDropdown(null);
+                      }}
                     >
                       {item.label}
-                      {hasDropdown && <ChevronDown className="w-4 h-4" />}
+                      {hasDropdown && (
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform duration-200 ${
+                            isDepartmentsHovered ? 'rotate-180' : ''
+                          }`}
+                        />
+                      )}
                     </Link>
 
                     {/* dropdown */}
@@ -94,14 +133,18 @@ export default function Navbar() {
                             exit="exit"
                             variants={dropdownVariants}
                             transition={{ duration: 0.14 }}
-                            className="absolute left-0 mt-2 w-55 bg-[#f15a29] shadow-xl text-white z-40"
+                            className="absolute left-0 mt-2 w-50 bg-[#f15a29] shadow-xl text-white z-40 overflow-hidden"
                             onMouseEnter={() => handleMouseEnter(item.label)}
                             onMouseLeave={handleMouseLeave}
                           >
-                            <ul className="p-3">
+                            <ul className="p-2">
                               {item.dropdown!.map((sub) => (
                                 <li key={sub.href}>
-                                  <Link href={sub.href} className="block px-3 py-2 rounded hover:bg-slate-10" onClick={() => setOpenDropdown(null)}>
+                                  <Link
+                                    href={sub.href}
+                                    className="block px-4 py-2 text-sm hover:bg-[#e44e1f] transition"
+                                    onClick={() => setOpenDropdown(null)}
+                                  >
                                     {sub.label}
                                   </Link>
                                 </li>
@@ -116,17 +159,21 @@ export default function Navbar() {
               })}
             </nav>
 
-            {/* Right: search icon and hamburger */}
-            <div className="flex items-center gap-4">
+            {/* Right: search & menu */}
+            <div className="flex items-center gap-2 sm:gap-3">
               <button
                 aria-label="Open search"
                 onClick={() => setSearchOpen(true)}
-                className="p-2 rounded-md hover:bg-slate-50"
+                className="p-2 rounded-md hover:bg-slate-50 transition"
               >
                 <Search className="w-5 h-5 text-slate-700" />
               </button>
 
-              <button className="lg:hidden p-2 rounded-md hover:bg-slate-50" onClick={() => setMobileOpen(true)} aria-label="Open menu">
+              <button
+                className="lg:hidden p-1 rounded-md hover:bg-slate-50"
+                onClick={() => setMobileOpen(true)}
+                aria-label="Open menu"
+              >
                 <Menu className="w-6 h-6" />
               </button>
             </div>
@@ -134,10 +181,14 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile sidebar as separate component */}
-      <MobileSidebar open={mobileOpen} onClose={() => setMobileOpen(false)} navItems={NAV_ITEMS} />
+      {/* Mobile sidebar */}
+      <MobileSidebar
+        open={mobileOpen}
+        onClose={() => setMobileOpen(false)}
+        navItems={NAV_ITEMS}
+      />
 
-      {/* Search modal as separate component */}
+      {/* Search modal */}
       <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
