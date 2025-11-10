@@ -44,7 +44,7 @@ const Principal = () => {
           <div className="relative flex justify-center items-center scale-90 sm:scale-100 lg:scale-110 xl:scale-150">
             <Image
               id="principal-hex-shape" // ✅ hex background shape
-              src="/images/principal/hex-orange3.png"
+              src="/images/Principal/hex-orange3.png"
               alt="Shape"
               width={260}
               height={200}
@@ -58,7 +58,7 @@ const Principal = () => {
               className="absolute -top-2 sm:top-7 lg:-top-2 left-8 lg:left-9"
             >
               <Image
-                src="/images/principal/principal1.png"
+                src="/images/Principal/principal.png"
                 alt="Principal"
                 width={215}
                 height={260}

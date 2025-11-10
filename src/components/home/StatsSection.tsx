@@ -27,7 +27,7 @@ export default function StatsSection() {
         <div className="flex justify-center md:justify-start flex-shrink-0 mb-0 md:mb-0">
           <div className="relative w-80 h-52 sm:w-64 sm:h-44 md:w-72 md:h-48 lg:w-80 lg:h-52 md:-translate-x-6 lg:-translate-x-8">
             <Image
-              src="/images/hero/years-of-logo1.png"
+              src="/images/hero/years-of-logo2.png"
               alt="KLE Society 109 years of Transforming Lives"
               fill
               className="object-contain"
