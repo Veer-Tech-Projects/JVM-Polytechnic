@@ -1,23 +1,19 @@
 // src/lib/search.ts
 import { departments } from '@/data/departments';
-import { events } from '@/data/events';
 import { faculty } from '@/data/faculty';
-import { testimonials } from '@/data/testimonials';
 
 export type SearchHit = {
   id: string;
-  kind: 'department' | 'event' | 'faculty' | 'testimonial';
+  kind: 'department' | 'event' | 'faculty' | 'testimonial' | 'section'  | 'page'  ;
   title: string;
   snippet?: string;
-  href: string;
+  href: string; // should be the final URL we want to navigate to (may include #fragment)
 };
 
-// Helper to normalize input
 function normalize(s?: string) {
   return (s ?? '').toLowerCase().trim();
 }
 
-// ✅ Simple search (no suggestions)
 export function searchAll(query: string): SearchHit[] {
   const q = normalize(query);
   if (!q) return [];
@@ -38,8 +34,8 @@ export function searchAll(query: string): SearchHit[] {
     }
   });
 
-  // Events
-  events.forEach((e) => {
+  // Events (if you have event pages)
+  /*events.forEach((e) => {
     const hay = `${e.title} ${e.summary ?? ''} ${e.description ?? ''}`.toLowerCase();
     if (hay.includes(q)) {
       results.push({
@@ -50,24 +46,26 @@ export function searchAll(query: string): SearchHit[] {
         href: `/events/${e.slug ?? e.id}`,
       });
     }
-  });
+  });*/
 
-  // Faculty
+  // Faculty — important: point to department page with #faculty-{slug}
   faculty.forEach((f) => {
     const hay = `${f.name} ${f.title ?? ''} ${f.bio ?? ''}`.toLowerCase();
     if (hay.includes(q)) {
+      // ensure f.department exists in your data (it does)
       results.push({
         id: `fac-${f.slug ?? f.id}`,
         kind: 'faculty',
         title: f.name,
         snippet: f.title ?? f.bio?.slice(0, 120),
-        href: `/faculty/${f.slug ?? f.id}`,
+        // link to department page + fragment id that you already added in dept page
+        href: `/departments/${f.department}#faculty-${f.slug ?? f.id}`,
       });
     }
   });
 
-  // Testimonials
-  testimonials.forEach((t, i) => {
+  // Testimonials -> shallow link to home section id (you already have /#testimonials)
+  /*testimonials.forEach((t, i) => {
     const hay = `${t.author ?? ''} ${t.text ?? ''}`.toLowerCase();
     if (hay.includes(q)) {
       results.push({
@@ -78,7 +76,46 @@ export function searchAll(query: string): SearchHit[] {
         href: `/#testimonials`,
       });
     }
+  });*/
+
+  // STATIC site sections (home sections and top-level pages) — add as searchable items
+  const staticSections = [
+    { id: 'jvm-world', title: 'JVM World', href: '/#jvm-world' },
+    { id: 'principal', title: 'Principal Message', href: '/#principal' },
+    // add more if you want (events section already has id 'events' in your Events.tsx)
+    { id: 'events', title: 'Events', href: '/#events' },
+  ];
+
+  staticSections.forEach((s) => {
+    if (s.title.toLowerCase().includes(q)) {
+      results.push({
+        id: `sec-${s.id}`,
+        kind: 'section',
+        title: s.title,
+        snippet: undefined,
+        href: s.href,
+      });
+    }
   });
+
+  const staticpages = [
+    { id: 'about-us', title: 'About Us', href: '/about' },
+    { id: 'vision-section', title: 'Vision & Mission', href: '/vision' },
+    { id: 'contact-us', title: 'Contact Us', href: '/contact' },
+  ]
+
+   staticpages.forEach((s) => {
+    if (s.title.toLowerCase().includes(q)) {
+      results.push({
+        id: `sec-${s.id}`,
+        kind: 'page',
+        title: s.title,
+        snippet: undefined,
+        href: s.href,
+      });
+    }
+  });
+
 
   return results;
 }

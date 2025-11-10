@@ -1,63 +1,73 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Search as SearchIcon } from 'lucide-react';
-import { searchAll, SearchHit } from '@/lib/search';
-import Link from 'next/link';
+import React, { useEffect, useState, useRef } from "react";
+import { X, Search } from "lucide-react";
+import { searchAll, SearchHit } from "@/lib/search";
+import { scrollToId } from "@/lib/scrollToId";
+import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
 type SearchModalProps = {
   open: boolean;
   onClose: () => void;
-  initialQuery?: string;
 };
 
-export default function SearchModal({ open, onClose, initialQuery = '' }: SearchModalProps) {
-  const [query, setQuery] = useState(initialQuery);
+export default function SearchModal({ open, onClose }: SearchModalProps) {
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchHit[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
-  // Detect mobile
+  // Focus the input when opened
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 640);
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Reset when closed
-  useEffect(() => {
-    if (!open) {
-      setQuery('');
-      setResults([]);
-      setIsSearching(false);
+    if (open && inputRef.current) {
+      setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [open]);
 
-  // Search logic
+  // ESC key closes modal
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [onClose]);
+
+  // Run search when query changes
   useEffect(() => {
     if (!query.trim()) {
       setResults([]);
       return;
     }
-
-    setIsSearching(true);
-    const timer = setTimeout(() => {
-      const results = searchAll(query);
-      setResults(results);
-      setIsSearching(false);
-    }, 250);
-
-    return () => clearTimeout(timer);
+    setResults(searchAll(query));
   }, [query]);
 
-  // Close on ESC
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
-    if (open) window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [open, onClose]);
+  // Handle result click (scroll or route)
+  function handleResultClick(hit: SearchHit) {
+    const href = hit.href || "";
+    const [pathPart, hashPart] = href.split("#");
+    const fragment = hashPart ? `#${hashPart}` : null;
+    const currentPath =
+      typeof window !== "undefined" ? window.location.pathname : "";
+    const resolvedPath = pathPart === "" ? "/" : pathPart;
+
+    // same-page scroll
+    if (resolvedPath === currentPath) {
+      if (fragment) scrollToId(fragment);
+      onClose();
+      return;
+    }
+
+    // navigate then scroll
+    const target = fragment
+      ? `${resolvedPath}#${fragment.slice(1)}`
+      : resolvedPath;
+    router.push(target);
+
+    if (fragment) {
+      setTimeout(() => scrollToId(fragment), 500);
+    }
+    onClose();
+  }
 
   return (
     <AnimatePresence>
@@ -65,86 +75,80 @@ export default function SearchModal({ open, onClose, initialQuery = '' }: Search
         <>
           {/* Backdrop */}
           <motion.div
-            key="backdrop"
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[998]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
             onClick={onClose}
           />
 
           {/* Modal */}
           <motion.div
-            key="modal"
-            initial={isMobile ? { y: '100%' } : { opacity: 0, scale: 0.95, y: 30 }}
-            animate={isMobile ? { y: 0 } : { opacity: 1, scale: 1, y: 0 }}
-            exit={isMobile ? { y: '100%' } : { opacity: 0, scale: 0.95, y: 30 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className={`fixed inset-0 z-50 flex ${
-              isMobile ? 'items-end' : 'items-start justify-center pt-24'
-            } px-4`}
+            className="fixed inset-0 z-[999] flex items-start justify-center p-4 overflow-y-auto"
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.25 }}
           >
-            <div
-              className={`w-full max-w-3xl bg-white shadow-xl overflow-hidden ${
-                isMobile ? 'rounded-t-2xl' : 'rounded-lg'
-              }`}
-            >
-              {/* Header */}
-              <div className="flex items-center gap-3 px-4 py-3 border-b">
-                <SearchIcon className="w-5 h-5 text-slate-600" />
+            <div className="bg-white w-full max-w-xl rounded-2xl shadow-xl mt-20 p-6 relative">
+              {/* Close button */}
+              <button
+                onClick={onClose}
+                className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
+              >
+                <X size={18} />
+              </button>
+
+              {/* Input */}
+              <div className="flex items-center gap-2 mb-4 border rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-[#F05A28]">
+                <Search className="text-gray-400" size={18} />
                 <input
-                  autoFocus
+                  ref={inputRef}
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search departments, events, faculty, testimonials..."
-                  className="flex-1 bg-transparent outline-none text-slate-900 placeholder:text-slate-400 text-base sm:text-sm"
+                  placeholder="Search departments, faculty, vision, contact..."
+                  className="w-full outline-none text-sm text-gray-800 bg-transparent"
                 />
-                <button
-                  onClick={onClose}
-                  aria-label="Close search"
-                  className="p-2 rounded hover:bg-slate-100"
-                >
-                  <X className="w-5 h-5 text-slate-600" />
-                </button>
               </div>
 
               {/* Results */}
-              <div className={`px-4 py-3 overflow-y-auto ${isMobile ? 'max-h-[70vh]' : 'max-h-80'}`}>
-                {!query.trim() ? (
-                  <div className="text-center text-slate-500 py-8 text-sm sm:text-base">
-                    Type to search the site...
-                  </div>
-                ) : isSearching ? (
-                  <div className="text-center text-slate-500 py-8 text-sm sm:text-base">
-                    Searching...
-                  </div>
-                ) : results.length > 0 ? (
-                  <ul className="space-y-2">
-                    {results.map((r) => (
-                      <li key={r.id} className="border rounded-lg hover:bg-slate-50 transition">
-                        <Link href={r.href} onClick={onClose} className="block p-3">
-                          <div className="flex items-start justify-between">
-                            <div>
-                              <div className="text-sm font-medium text-slate-900">{r.title}</div>
-                              {r.snippet && (
-                                <div className="text-sm text-slate-600 mt-1">{r.snippet}</div>
-                              )}
+              {results.length === 0 ? (
+                <p className="text-sm text-gray-500 text-center py-6">
+                  {query.trim()
+                    ? "No results found."
+                    : "Type to start searching."}
+                </p>
+              ) : (
+                <ul className="space-y-2 max-h-[60vh] overflow-y-auto">
+                  {results.map((r) => (
+                    <li
+                      key={r.id}
+                      className="border border-gray-100 rounded-lg hover:bg-slate-50 transition"
+                    >
+                      <button
+                        onClick={() => handleResultClick(r)}
+                        className="w-full text-left block p-3"
+                      >
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <div className="text-sm font-medium text-slate-900">
+                              {r.title}
                             </div>
-                            <div className="ml-4 text-xs px-2 py-1 rounded bg-gradient-to-r from-indigo-500 to-blue-600 text-white whitespace-nowrap">
-                              {r.kind}
-                            </div>
+                            {r.snippet && (
+                              <div className="text-xs text-slate-600 mt-1">
+                                {r.snippet}
+                              </div>
+                            )}
                           </div>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <div className="text-center text-slate-500 py-8 text-sm sm:text-base">
-                    No results found
-                  </div>
-                )}
-              </div>
+                          <div className="ml-3 text-[11px] px-2 py-0.5 rounded bg-[#F05A28] text-white uppercase">
+                            {r.kind}
+                          </div>
+                        </div>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </motion.div>
         </>

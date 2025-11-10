@@ -6,7 +6,9 @@ import { motion } from 'framer-motion';
 
 export default function AboutPage() {
   return (
-    <section className="flex flex-col md:flex-row items-start justify-between max-w-7xl mx-auto px-6 md:px-10 py-16 gap-12">
+    <section 
+      id="about-us"
+      className="flex flex-col md:flex-row items-start justify-between max-w-7xl mx-auto px-6 md:px-10 py-16 gap-12">
       {/* LEFT: Curved Image */}
       <motion.div
         className="flex-shrink-0 w-full md:w-1/2 flex justify-center md:justify-start"

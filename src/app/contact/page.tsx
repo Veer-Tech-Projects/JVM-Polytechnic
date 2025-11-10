@@ -46,8 +46,10 @@ export default function ContactPage() {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-6 md:px-10 pt-5 md:pt-12 pb-20">
-      <Toaster position="top-right" />
+    <section 
+      id="contact-us"
+      className="max-w-7xl mx-auto px-6 md:px-10 pt-5 md:pt-12 pb-20">
+        <Toaster position="top-right" />
 
       {/* ===== HEADING ===== */}
       <div className="text-center mb-14">
@@ -69,7 +71,7 @@ export default function ContactPage() {
         {/* === LEFT: MAP + INFO === */}
         <div>
           {/* Google Map */}
-          <div className="w-full h-[350px] rounded-xl overflow-hidden shadow-md mb-6">
+          <div id="contact-location" className="w-full h-[350px] rounded-xl overflow-hidden shadow-md mb-6">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.553128562737!2d75.0587419!3d16.4981501!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc733d74442dd73%3A0xc5dc809103745a69!2sJ.%20V.%20MANDAL&#39;S%20POLYTECHNIC%20TERDAL!5e0!3m2!1sen!2sin!4v1762674260000!5m2!1sen!2sin"
               width="100%"
@@ -84,7 +86,7 @@ export default function ContactPage() {
           {/* Reach Us + Socials */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm text-gray-700 pt-10">
             {/* Reach Us */}
-            <div>
+            <div id="contact-address">
               <h3 className="font-semibold uppercase text-gray-900 mb-4 tracking-wide text-sm">
                 Reach Us Through
               </h3>
@@ -105,7 +107,7 @@ export default function ContactPage() {
             </div>
 
             {/* Socials */}
-            <div>
+            <div id="social-media">
               <h3 className="font-semibold uppercase text-gray-900 mb-4 tracking-wide text-sm">
                 Social Networks
               </h3>
@@ -157,7 +159,7 @@ export default function ContactPage() {
         </div>
 
         {/* === RIGHT: CONTACT FORM === */}
-        <div className="bg-white shadow-md rounded-2xl p-8 border border-gray-100">
+        <div id="contact-form" className="bg-white shadow-md rounded-2xl p-8 border border-gray-100">
           <h3 className="font-semibold text-lg mb-6">Send us a Message</h3>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             {/* Name */}

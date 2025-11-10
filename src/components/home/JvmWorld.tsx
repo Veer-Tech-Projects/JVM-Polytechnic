@@ -9,7 +9,6 @@ const JvmWorld = () => {
   return (
     <SectionWrapper id="jvm-world" className="bg-white">
       <div className="grid md:grid-cols-2 gap-6 md:gap-10 lg:gap-16 items-center relative">
-
         {/* LEFT SIDE */}
         <div className="relative flex justify-center items-center">
           <div className="relative w-full max-w-[480px] md:max-w-[580px]">
@@ -43,16 +42,18 @@ const JvmWorld = () => {
 
         {/* RIGHT SIDE */}
         <div className="relative flex flex-col justify-center text-gray-600 ml-2 md:ml-0 pr-2 md:pr-0">
-
           {/* Heading */}
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-2 md:mb-4 text-left">
+          <h2 id="jvm-world-heading" className="text-2xl sm:text-3xl md:text-5xl font-bold mb-2 md:mb-4 text-left">
             <span className="text-gray-400">The </span>
             <span className="text-[#FF6B00]">JVM </span>
             <span className="text-gray-500">World</span>
           </h2>
 
           {/* Paragraph */}
-          <p className="text-sm sm:text-sm md:text-base text-gray-500 leading-relaxed mb-4 md:mb-6 max-w-[600px] text-left">
+          <p
+            id="jvm-world-description"
+            className="text-sm sm:text-sm md:text-base text-gray-500 leading-relaxed mb-4 md:mb-6 max-w-[600px] text-left"
+          >
             JVM Society embodies education, research, and healthcare, enriching
             lives and empowering individuals to become responsible citizens.
             Driven by perseverance, we offer diverse programs, making us a
@@ -61,20 +62,21 @@ const JvmWorld = () => {
 
           {/* Facilities List */}
           <div className="space-y-1 mb-8 md:mb-22 text-sm sm:text-sm md:text-base font-bold text-gray-800 flex flex-col text-left w-fit">
-            {[
-              "HOSTEL FACILITIES",
-              "STUDENT AFFAIRS",
-              "SPORTS FACILITIES",
-              "EATERY FACILITIES",
-              "LIBRARY FACILITIES",
-            ].map((item) => (
-              <div
-                key={item}
-                className="border-b border-gray-400 py-2 w-full hover:text-[#FF6B00] cursor-pointer transition-colors"
-              >
-                {item}
-              </div>
-            ))}
+            <div id="hostel-facilities" className="border-b border-gray-400 py-2 hover:text-[#FF6B00] cursor-pointer transition-colors">
+              HOSTEL FACILITIES
+            </div>
+            <div id="student-affairs" className="border-b border-gray-400 py-2 hover:text-[#FF6B00] cursor-pointer transition-colors">
+              STUDENT AFFAIRS
+            </div>
+            <div id="sports-facilities" className="border-b border-gray-400 py-2 hover:text-[#FF6B00] cursor-pointer transition-colors">
+              SPORTS FACILITIES
+            </div>
+            <div id="eatery-facilities" className="border-b border-gray-400 py-2 hover:text-[#FF6B00] cursor-pointer transition-colors">
+              EATERY FACILITIES
+            </div>
+            <div id="library-facilities" className="border-b border-gray-400 py-2 hover:text-[#FF6B00] cursor-pointer transition-colors">
+              LIBRARY FACILITIES
+            </div>
           </div>
 
           {/* Mobile Overlapping Circles */}
@@ -97,7 +99,7 @@ const JvmWorld = () => {
             </div>
           </div>
 
-          {/* Desktop Overlapping Circles (unchanged ✅) */}
+          {/* Desktop Overlapping Circles */}
           <div className="absolute right-25 top-[50%] translate-y-[-50%] hidden lg:flex">
             <div className="relative w-[170px] h-[170px]">
               <Image
@@ -119,27 +121,39 @@ const JvmWorld = () => {
         </div>
       </div>
 
-      {/* Bottom Icons ✅ one line & smaller on mobile */}
+      {/* Bottom Icons */}
       <div className="mt-0 md:-mt-15 flex flex-wrap justify-center md:justify-end gap-6 md:gap-14 pr-0 md:pr-17 text-center">
-        {[
-          { icon: <Home strokeWidth={1} className="w-6 h-6 md:w-7 md:h-7 mx-auto mb-1" />, label: "Hostel\nFacilities" },
-          { icon: <GraduationCap strokeWidth={1} className="w-6 h-6 md:w-7 md:h-7 mx-auto mb-1" />, label: "Student\nAffairs" },
-          { icon: <Trophy strokeWidth={1} className="w-6 h-6 md:w-7 md:h-7 mx-auto mb-1" />, label: "Sports\nFacilities" },
-          { icon: <Utensils strokeWidth={1} className="w-6 h-6 md:w-7 md:h-7 mx-auto mb-1" />, label: "Eatery\nFacilities" },
-          { icon: <BookOpen strokeWidth={1} className="w-6 h-6 md:w-7 md:h-7 mx-auto mb-1" />, label: "Library\nFacilities" },
-        ].map((item) => (
-          <div
-            key={item.label}
-            className="flex flex-col items-center hover:text-[#FF6B00] transition-transform duration-300 hover:scale-105"
-          >
-            {item.icon}
-            <span className="whitespace-pre-line leading-tight text-[10px] sm:text-xs md:text-sm font-normal">
-              {item.label}
-            </span>
-          </div>
-        ))}
+        <div id="icon-hostel" className="flex flex-col items-center hover:text-[#FF6B00] transition-transform duration-300 hover:scale-105">
+          <Home strokeWidth={1} className="w-6 h-6 md:w-7 md:h-7 mx-auto mb-1" />
+          <span className="whitespace-pre-line leading-tight text-[10px] sm:text-xs md:text-sm font-normal">
+            Hostel{"\n"}Facilities
+          </span>
+        </div>
+        <div id="icon-student-affairs" className="flex flex-col items-center hover:text-[#FF6B00] transition-transform duration-300 hover:scale-105">
+          <GraduationCap strokeWidth={1} className="w-6 h-6 md:w-7 md:h-7 mx-auto mb-1" />
+          <span className="whitespace-pre-line leading-tight text-[10px] sm:text-xs md:text-sm font-normal">
+            Student{"\n"}Affairs
+          </span>
+        </div>
+        <div id="icon-sports" className="flex flex-col items-center hover:text-[#FF6B00] transition-transform duration-300 hover:scale-105">
+          <Trophy strokeWidth={1} className="w-6 h-6 md:w-7 md:h-7 mx-auto mb-1" />
+          <span className="whitespace-pre-line leading-tight text-[10px] sm:text-xs md:text-sm font-normal">
+            Sports{"\n"}Facilities
+          </span>
+        </div>
+        <div id="icon-eatery" className="flex flex-col items-center hover:text-[#FF6B00] transition-transform duration-300 hover:scale-105">
+          <Utensils strokeWidth={1} className="w-6 h-6 md:w-7 md:h-7 mx-auto mb-1" />
+          <span className="whitespace-pre-line leading-tight text-[10px] sm:text-xs md:text-sm font-normal">
+            Eatery{"\n"}Facilities
+          </span>
+        </div>
+        <div id="icon-library" className="flex flex-col items-center hover:text-[#FF6B00] transition-transform duration-300 hover:scale-105">
+          <BookOpen strokeWidth={1} className="w-6 h-6 md:w-7 md:h-7 mx-auto mb-1" />
+          <span className="whitespace-pre-line leading-tight text-[10px] sm:text-xs md:text-sm font-normal">
+            Library{"\n"}Facilities
+          </span>
+        </div>
       </div>
-
     </SectionWrapper>
   );
 };

@@ -38,4 +38,14 @@ export const faculty: Faculty[] = [
     image: "/images/faculty/faculty4.jpg",
     department: "cs",
   },
+
+  {
+    id: "fac4",
+    slug: "Akshata Mundaganur",
+    name: "Akshata Mundaganur",
+    title: "Lecturer, Kannada Language",
+    bio: "Ms.Akshata focuses specifically on kannada language, literature and cultural values.",
+    image: "/images/faculty/faculty5.jpg",
+    department: "mech",
+  },
 ];
