@@ -22,35 +22,34 @@ const Footer: React.FC = () => {
   const [showScroll, setShowScroll] = useState<boolean>(false);
 
   useEffect(() => {
-    const countKey = "jvmpolytechnic.ac.in/website_views";
     const lastVisit = localStorage.getItem("lastVisit");
     const sixHours = 6 * 60 * 60 * 1000;
     const now = Date.now();
 
+    const fetchViews = async () => {
+      try {
+        const res = await fetch("/api/website-views");
+        const data = await res.json();
+        setViews(data.value || 0);
+        localStorage.setItem("lastVisit", now.toString());
+      } catch (err) {
+        console.error("Failed to fetch views:", err);
+        setViews(0);
+      }
+    };
+
     if (!lastVisit || now - parseInt(lastVisit) > sixHours) {
-      fetch(`https://api.countapi.xyz/hit/${countKey}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setViews(data.value);
-          localStorage.setItem("lastVisit", now.toString());
-        })
-        .catch(() => {
-          fetch(`https://api.countapi.xyz/get/${countKey}`)
-            .then((res) => res.json())
-            .then((data) => setViews(data.value || 0))
-            .catch(() => setViews(0));
-        });
+      fetchViews();
     } else {
-      fetch(`https://api.countapi.xyz/get/${countKey}`)
-        .then((res) => res.json())
-        .then((data) => setViews(data.value || 0))
-        .catch(() => setViews(0));
+      // optional: still show previous value from localStorage
+      fetchViews();
     }
 
     const handleScroll = () => setShowScroll(window.scrollY > 150);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
