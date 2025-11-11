@@ -19,7 +19,9 @@ import { departments } from "@/data/departments";
 
 const Footer: React.FC = () => {
   const [showScroll, setShowScroll] = useState(false);
+  const [visitorCount, setVisitorCount] = useState<string>("Loading...");
 
+  // Scroll to top button
   useEffect(() => {
     const handleScroll = () => setShowScroll(window.scrollY > 150);
     window.addEventListener("scroll", handleScroll);
@@ -28,14 +30,27 @@ const Footer: React.FC = () => {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-  const hitCounterImg =
-    "https://hitwebcounter.com/counter/counter.php?page=21456071&style=0008&nbdigits=5&type=ip&initCount=0";
+  // ✅ Fetch visitor count from Google Analytics
+  useEffect(() => {
+    fetch("/api/visitors")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.totalUsers) {
+          setVisitorCount(data.totalUsers.toString());
+        } else {
+          setVisitorCount("N/A");
+        }
+      })
+      .catch((err) => {
+        console.error("Visitor count fetch failed:", err);
+        setVisitorCount("N/A");
+      });
+  }, []);
 
   return (
     <>
       <footer className="w-full bg-black text-white relative">
         <div className="w-full px-6 py-16 lg:px-20 grid grid-cols-1 md:grid-cols-4 gap-10 max-w-screen-2xl mx-auto">
-
           {/* Logo & Contact */}
           <div className="text-sm md:text-base">
             <div className="flex items-center gap-2 mb-6 md:mb-8">
@@ -120,17 +135,14 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Visitor Counter (Desktop) */}
+          {/* ✅ Visitor Counter (Desktop) */}
           <div className="hidden md:flex flex-col items-center justify-center pr-4">
             <div className="flex items-center gap-1.5 bg-orange-600/90 px-3 py-1.5 rounded-md shadow min-w-[110px] justify-center">
               <Eye className="w-4 h-4 animate-eye-blink origin-center" />
-              <a href="https://www.hitwebcounter.com/" target="_blank" rel="noreferrer">
-                <img src={hitCounterImg} alt="Website Views" className="h-3" />
-              </a>
+              <span className="text-sm font-semibold text-white">{visitorCount}</span>
             </div>
-            <p className="text-gray-400 text-[11px] mt-1 text-center w-full">Website Views</p>
+            <p className="text-gray-400 text-[11px] mt-1 text-center w-full">Website Visitors</p>
           </div>
-
 
           {/* Mobile grid (Departments + Quick Links) */}
           <div className="md:hidden grid grid-cols-2 gap-6 mt-6">
@@ -177,7 +189,7 @@ const Footer: React.FC = () => {
               </ul>
             </div>
 
-           {/* Mobile Social + Visitor Counter (in one line) */}
+            {/* ✅ Mobile Social + Visitor Counter */}
             <div className="col-span-2 flex items-center justify-between mt-4 px-0">
               {/* Social Icons */}
               <div className="flex items-center gap-3">
@@ -196,11 +208,9 @@ const Footer: React.FC = () => {
               </div>
 
               {/* Visitor Counter */}
-              <div className="flex items-center gap-1 bg-orange-600/90 px-1.5 py-[2px] rounded-md shadow-sm mr-12">
-                <Eye className="w-[11px] h-[11px] animate-eye-blink origin-center" />
-                <a href="https://www.hitwebcounter.com/" target="_blank" rel="noreferrer">
-                  <img src={hitCounterImg} alt="Website Views" className="h-3" />
-                </a>
+              <div className="flex items-center gap-1 bg-orange-600/90 px-2 py-[2px] rounded-md shadow-sm mr-20">
+                <Eye className="w-[12px] h-[13px] animate-eye-blink origin-center" />
+                <span className="text-xs font-semibold text-white">{visitorCount}</span>
               </div>
             </div>
           </div>
