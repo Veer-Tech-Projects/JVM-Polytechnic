@@ -4,7 +4,7 @@ export const departments = [
     slug: 'Electronics',
     shortDesc: 'Empowering students with AI, Data Science, and Software Engineering skills.',
     description:
-      'The Department of Computer Science and Engineering provides strong foundations in algorithms, programming, data science, and emerging technologies such as AI and Machine Learning. It aims to prepare students for software development, research, and entrepreneurship.',
+      'The Department of Electronics and Engineering provides strong foundations in algorithms, programming, data science, and emerging technologies such as AI and Machine Learning. It aims to prepare students for software development, research, and entrepreneurship.',
     image: '/images/departments/civil.jpg',
     bannerImage: "/images/departments/cs1.png", 
   },
@@ -35,13 +35,5 @@ export const departments = [
     image: '/images/departments/civil.jpg',
     bannerImage: "/images/departments/cs1.png", 
   },
-  {
-    name: "Computer Science and Engineering",
-    slug: "cs",
-    shortName: "CS",
-    description: `The Department of Computer Science and Engineering is dedicated to providing students with a strong foundation in computing principles and practical problem-solving skills. With state-of-the-art laboratories and experienced faculty, the department aims to foster innovation and research in emerging technologies such as Artificial Intelligence, Data Science, and Cloud Computing.`,
-    image: '/images/departments/civil.jpg',
-    bannerImage: "/images/departments/cs1.png", 
-  },
-  
+
 ];

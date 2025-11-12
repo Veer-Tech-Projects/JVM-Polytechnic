@@ -7,11 +7,10 @@ import { motion } from 'framer-motion';
 
 export default function StatsSection() {
   const stats = [
-    { label: 'Institutions', value: 316 },
-    { label: 'Staff', value: 18000, suffix: '+' },
-    { label: 'Students', value: 145000, suffix: '+' },
-    { label: 'Trust Members', value: 13000, suffix: '+' },
-    { label: 'Decades', value: 11 },
+    { label: 'Staff', value: 200, suffix: '+' },
+    { label: 'Students', value: 1200, suffix: '+' },
+    { label: 'Trust Members', value: 500, suffix: '+' },
+    { label: 'Years', value: 18 },
   ];
 
   return (
@@ -27,7 +26,7 @@ export default function StatsSection() {
         <div className="flex justify-center md:justify-start flex-shrink-0 mb-0 md:mb-0">
           <div className="relative w-80 h-52 sm:w-64 sm:h-44 md:w-72 md:h-48 lg:w-80 lg:h-52 md:-translate-x-6 lg:-translate-x-8">
             <Image
-              src="/images/hero/years-of-logo2.png"
+              src="/images/hero/jvm-banner-logo.png"
               alt="KLE Society 109 years of Transforming Lives"
               fill
               className="object-contain"
