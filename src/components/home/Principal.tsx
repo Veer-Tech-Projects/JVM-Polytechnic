@@ -37,7 +37,7 @@ const Principal = () => {
           {/* Orange Hex Shape */}
           <div className="relative flex justify-center items-center scale-90 sm:scale-100 lg:scale-110 xl:scale-150">
             <Image
-              src="/images/principal/hex-orange3.png"
+              src="/images/Principal/hex-orange3.png"
               alt="Shape"
               width={260}
               height={200}
@@ -48,7 +48,7 @@ const Principal = () => {
             {/* Principal Image Overlay */}
             <div className="absolute -top-4.5 sm:top-7 lg:-top-3.5 left-16.5 lg:left-17.5">
               <Image
-                src="/images/principal/jvm-p2.png"
+                src="/images/Principal/jvm-p2.png"
                 alt="Principal"
                 width={160}
                 height={260}
