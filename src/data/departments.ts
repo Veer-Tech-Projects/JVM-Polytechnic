@@ -4,36 +4,36 @@ export const departments = [
     slug: 'Electronics',
     shortDesc: 'Empowering students with AI, Data Science, and Software Engineering skills.',
     description:
-      'The Department of Electronics and Engineering provides strong foundations in algorithms, programming, data science, and emerging technologies such as AI and Machine Learning. It aims to prepare students for software development, research, and entrepreneurship.',
-    image: '/images/departments/civil.jpg',
-    bannerImage: "/images/departments/cs1.png", 
+      'The Department of Electronics Engineering is committed to providing strong technical foundations and practical skills in modern electronics and communication systems. The department focuses on industry-oriented training and academic excellence to prepare competent diploma engineers.',
+    image: '/images/departments/electronics-branch1.jpg',
+    bannerImage: "/images/departments/electronics-department.jpg", 
   },
   {
     name: 'Mechanical Engineering',
     slug: 'mech',
     shortDesc: 'Hands-on learning with cutting-edge tools in design and manufacturing.',
     description:
-      'Mechanical Engineering at JVM Polytechnic focuses on industrial design, manufacturing processes, thermal sciences, and robotics. Students gain both theoretical and practical expertise in core mechanical concepts.',
-    image: '/images/departments/civil.jpg',
-    bannerImage: "/images/departments/cs1.png", 
+      'The Department of Mechanical Engineering strives to impart quality technical education by strengthening core engineering skills, practical knowledge, and industry-oriented learning among students.',
+    image: '/images/departments/mech-branch.jpg',
+    bannerImage: "/images/departments/mech-department.jpg", 
   },
   {
     name: 'Electrical Engineering',
     slug: 'ee',
     shortDesc: 'Building the future of power systems and smart grids.',
     description:
-      'The Electrical Engineering department covers areas like circuit design, power systems, renewable energy, and control systems. Students learn through labs and industrial exposure.',
-    image: '/images/departments/civil.jpg',
-    bannerImage: "/images/departments/cs1.png", 
+      'The Department of Electrical Engineering is committed to imparting quality technical education through strong fundamentals, practical training, and industry-oriented learning to develop skilled professionals.',
+    image: '/images/departments/electrical-branch.jpg',
+    bannerImage: "/images/departments/electrical-department.jpg", 
   },
   {
     name: 'Civil Engineering',
     slug: 'civil',
     shortDesc: 'Designing tomorrow’s infrastructure with sustainability in mind.',
     description:
-      'Civil Engineering trains students in structural design, construction technology, environmental engineering, and surveying, emphasizing sustainable development.',
-    image: '/images/departments/civil.jpg',
-    bannerImage: "/images/departments/cs1.png", 
+      'The Department of Civil Engineering is committed to imparting quality technical education with a strong foundation in construction practices, infrastructure development, and sustainable engineering solutions.',
+    image: '/images/departments/civil2.jpg',
+    bannerImage: "/images/departments/civil-department.jpg", 
   },
 
 ];

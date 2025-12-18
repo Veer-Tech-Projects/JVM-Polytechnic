@@ -26,8 +26,7 @@ const Principal = () => {
 
           {/* Paragraph Text */}
           <p className="text-[#939393] italic font-bold text-[16px] sm:text-[18px] lg:text-[21px leading-snug tracking-normal max-w-xs sm:max-w-sm lg:max-w-md pl-1">
-            Education is the foundation upon which dreams are built, and at our
-            college, we empower every student to rise, achieve, and inspire.
+            Education is a powerful tool that builds knowledge, skills, and values, enabling students to become responsible professionals and worthy citizens.
           </p>
         </div>
 
@@ -78,8 +77,7 @@ const Principal = () => {
             </p>
 
             <p className="text-[14px] sm:text-[15px] lg:text-[16px] text-gray-600 leading-snug">
-              A multi-faceted personality with significant contributions to
-              education and community welfare.
+              An accomplished educator and administrator committed to quality education, ethical values, and holistic development of students. Actively contributes to institutional growth and community engagement.
             </p>
 
           </div>

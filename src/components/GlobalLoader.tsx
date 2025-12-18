@@ -19,7 +19,7 @@ export default function GlobalLoader({ children }: { children: React.ReactNode }
         {/* JVM Logo */}
         <div className="relative w-24 h-24 sm:w-28 sm:h-28 mb-5">
           <Image
-            src="/images/hero/jvm-logo2.png"
+            src="/images/logo/new-logo.png"
             alt="JVM Polytechnic Logo"
             fill
             className="object-contain opacity-95"

@@ -4,8 +4,17 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 const eventImages = [
-  "/images/hero/events1.jpg",
-  "/images/hero/college1.jpg",
+  "/images/events/event-11.jpg",
+  "/images/events/event-10.jpg",
+  "/images/events/event-2.jpg",
+  "/images/events/event-3.jpg",
+  "/images/events/event-4.jpg",
+  "/images/events/event-5.jpg",
+  "/images/events/event-6.jpg",
+  "/images/events/event-7.jpg",
+  "/images/events/event-8.jpg",
+  "/images/events/event-9.jpg",
+  "/images/events/event-13.jpg",
 ];
 
 const Events = () => {
@@ -52,7 +61,7 @@ const Events = () => {
                 className="relative w-[100px] h-[100px] sm:w-[110px] sm:h-[110px] md:w-[160px] md:h-[160px] overflow-hidden rounded-full border-1 border-white shadow-md"
               >
                 <Image
-                  src="/images/events/event1.png"
+                  src="/images/events/event-11.jpg"
                   alt="Event 1"
                   fill
                   className="object-cover"
@@ -63,7 +72,7 @@ const Events = () => {
                 className="absolute left-[85px] sm:left-[80px] md:left-[130px] top-0 w-[100px] h-[100px] sm:w-[110px] sm:h-[110px] md:w-[160px] md:h-[160px] overflow-hidden rounded-full border-1 border-white shadow-md"
               >
                 <Image
-                  src="/images/events/event2.png"
+                  src="/images/events/event-4.jpg"
                   alt="Event 2"
                   fill
                   className="object-cover"
@@ -74,7 +83,7 @@ const Events = () => {
                 className="absolute left-[170px] sm:left-[160px] md:left-[260px] top-0 w-[100px] h-[100px] sm:w-[110px] sm:h-[110px] md:w-[160px] md:h-[160px] overflow-hidden rounded-full border-1 border-white shadow-md"
               >
                 <Image
-                  src="/images/events/event3.png"
+                  src="/images/events/event-2.jpg"
                   alt="Event 3"
                   fill
                   className="object-cover"
@@ -88,11 +97,7 @@ const Events = () => {
             id="events-paragraph" // ✅ for search like “about events” or “event info”
             className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-sm ml-1 sm:ml-2 md:ml-4"
           >
-            Explore the vibrant world of JVM events where innovation meets
-            energy. From cultural fests to technical symposiums, every event
-            inspires creativity, collaboration, and leadership among students.
-            Stay tuned for upcoming programs and moments of pride that define
-            JVM’s spirited culture.
+            JVM organizes a wide range of academic, technical, and cultural events that promote innovation, teamwork, and leadership among students. These programs provide opportunities for holistic development and create a vibrant campus learning environment.
           </p>
         </div>
 

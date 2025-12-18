@@ -19,7 +19,7 @@ export default function AboutPage() {
       >
         <div className="relative w-[95%] md:w-[100%] max-w-[650px]">
           <Image
-            src="/images/about/about2.webp"
+            src="/images/about/about5.jpg"
             alt="Institute Building"
             width={650}
             height={500}

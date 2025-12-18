@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
           <div className="text-sm md:text-base">
             <div className="flex items-center gap-2 mb-6 md:mb-8">
               <Image
-                src="/images/hero/jvm-logo2.png"
+                src="/images/logo/new-logo.png"
                 alt="JVM Polytechnic Logo"
                 width={90}
                 height={95}
@@ -64,14 +64,14 @@ const Footer: React.FC = () => {
             </div>
             <ul className="space-y-2 md:space-y-3 text-gray-300 text-xs md:text-sm">
               <li className="flex items-center gap-2">
-                <Phone className="text-orange-500 w-4 h-4" /> +91 98765 43210
+                <Phone className="text-orange-500 w-4 h-4" /> +91 8904058050
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="text-orange-500 w-4 h-4" /> info@jvmpolytechnic.ac.in
+                <Mail className="text-orange-500 w-4 h-4" /> Principaljvmpt@gmail.com
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="text-orange-500 w-4 h-4 mt-1" />
-                JVM Polytechnic, Main Road, Belagavi, Karnataka - 590001
+                Gurukul Garden Rd, Campus, Terdal, Karnataka-587315
               </li>
             </ul>
           </div>
@@ -96,16 +96,13 @@ const Footer: React.FC = () => {
 
             {/* Social Icons under Departments */}
             <div className="flex justify-center md:justify-start items-center gap-5 mt-8">
-              <Link href="https://facebook.com" className="hover:text-orange-500 transition">
+              <Link href="https://www.facebook.com/share/14Rbnya3o62/" className="hover:text-orange-500 transition">
                 <Facebook className="w-5 h-5" />
               </Link>
-              <Link href="https://twitter.com" className="hover:text-orange-500 transition">
-                <Twitter className="w-5 h-5" />
-              </Link>
-              <Link href="https://instagram.com" className="hover:text-orange-500 transition">
+              <Link href="https://www.instagram.com/jvm_polytechnic?igsh=OXhkZG8weGl0ZnJ1" className="hover:text-orange-500 transition">
                 <Instagram className="w-5 h-5" />
               </Link>
-              <Link href="https://linkedin.com" className="hover:text-orange-500 transition">
+              <Link href="https://www.linkedin.com/in/principal-jvm-s-polytechnic-81697b38a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" className="hover:text-orange-500 transition">
                 <Linkedin className="w-5 h-5" />
               </Link>
             </div>
@@ -193,16 +190,13 @@ const Footer: React.FC = () => {
             <div className="col-span-2 flex items-center justify-between mt-4 px-0">
               {/* Social Icons */}
               <div className="flex items-center gap-3">
-                <Link href="https://facebook.com" className="hover:text-orange-500">
+                <Link href="https://www.facebook.com/share/14Rbnya3o62/" className="hover:text-orange-500">
                   <Facebook className="w-4 h-4" />
                 </Link>
-                <Link href="https://twitter.com" className="hover:text-orange-500">
-                  <Twitter className="w-4 h-4" />
-                </Link>
-                <Link href="https://instagram.com" className="hover:text-orange-500">
+                <Link href="https://www.instagram.com/jvm_polytechnic?igsh=OXhkZG8weGl0ZnJ1" className="hover:text-orange-500">
                   <Instagram className="w-4 h-4" />
                 </Link>
-                <Link href="https://linkedin.com" className="hover:text-orange-500">
+                <Link href="https://www.linkedin.com/in/principal-jvm-s-polytechnic-81697b38a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" className="hover:text-orange-500">
                   <Linkedin className="w-4 h-4" />
                 </Link>
               </div>

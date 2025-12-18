@@ -94,15 +94,15 @@ export default function ContactPage() {
                 <MapPin size={16} className="mt-1 text-[#F05A28]" />
                 J. V. MANDAL'S POLYTECHNIC,<br />
                 Gurukul Garden Rd, Campus,<br />
-                Terdal, Karnataka 587315
+                Terdal, Karnataka-587315
               </p>
               <p className="mb-3 flex items-center gap-2">
                 <Phone size={16} className="text-[#F05A28]" />
-                +91–831–2404040, 2404555
+                +91 8904058050
               </p>
               <p className="flex items-center gap-2">
                 <Mail size={16} className="text-[#F05A28]" />
-                jvmpolytechnic@gmail.com
+                Principaljvmpt@gmail.com
               </p>
             </div>
 
@@ -114,7 +114,7 @@ export default function ContactPage() {
               <ul className="space-y-3">
                 <li>
                   <a
-                    href="#"
+                    href="https://www.facebook.com/share/14Rbnya3o62/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 hover:text-[#F05A28] transition"
@@ -124,17 +124,7 @@ export default function ContactPage() {
                 </li>
                 <li>
                   <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 hover:text-[#F05A28] transition"
-                  >
-                    <Twitter size={16} /> Twitter
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
+                    href="https://www.instagram.com/jvm_polytechnic?igsh=OXhkZG8weGl0ZnJ1"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 hover:text-[#F05A28] transition"
@@ -144,7 +134,7 @@ export default function ContactPage() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/in/principal-jvm-s-polytechnic-81697b38a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 hover:text-[#F05A28] transition"

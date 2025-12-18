@@ -21,7 +21,7 @@ const Vision = () => {
         >
           <div className="relative w-[90%] sm:w-[60%] md:w-full max-w-[550px]">
             <Image
-              src="/images/vision/vision1.webp"
+              src="/images/vision/vision2.jpg"
               alt="Vision"
               width={550}
               height={550}
@@ -47,18 +47,16 @@ const Vision = () => {
             className="text-lg sm:text-xl md:text-[28px] font-medium"
             style={{ color: orange }}
           >
-            Vision
+            Mission
           </h2>
 
           <p
             id="vision-description"
             className="mt-3 md:mt-7 text-[14px] sm:text-[15px] md:text-[15px] text-gray-800 leading-tight"
           >
-            To continually evolve as an organisation symbolising global excellence
-            in standards and commitments in the domains of quality education,
-            healthcare, and research, while at the same time adopting, nurturing,
-            and propagating democratic values, charitable virtues, and a
-            philanthropic culture.
+            To pursue excellence through student centric dynamic teaching - learning processes, encouraging freedom of inquiry and openness to change.
+            <br /><br />
+            To carry out innovative cutting edge research and transfer technology for industrial and societal needs.
           </p>
         </motion.div>
       </div>
@@ -80,19 +78,16 @@ const Vision = () => {
           className="text-lg sm:text-xl md:text-[28px] font-medium"
           style={{ color: orange }}
         >
-          Mission
+          Vision
         </h2>
 
         <div id="mission-points" className="grid grid-cols-1 md:grid-cols-2 gap-y-6 md:gap-x-10 mt-8">
           {[
-            "To propagate, support, and champion the cause of ‘Excellence through Education’ for aspirants across the globe.",
-            "To recruit and groom well-qualified, well-trained, and efficient human resources committed to the accomplishment of individual and organisational excellence through continual learning.",
-            "To create infrastructure and state-of-the-art educational facilities and provide opportunities especially for rural students.",
-            "To provide state-of-the-art healthcare facilities and services to people in both urban and rural areas.",
-            "To contribute to the welfare of the farming community by facilitating education and adoption of modern farm practices.",
-            "To set, develop, and maintain high standards for quality education in KLE institutions through best practices.",
-            "To constantly redesign learning by addressing educational, social, and community demands.",
-            "To facilitate experiential learning and produce ethically responsible professionals.",
+            "A set of spiritual and moral values honesty, integrity and good judgment.",
+            "A compliment of basic skills linguistic, mathematical, scientific artistic, physical and social.",
+            "An enquiring and discriminating mind and a desire for knowledge.",
+            "Strong self - esteem and high personal expectation.",
+            "Tolerance and respect for others.",
           ].map((point, i) => (
             <div key={i} id={`mission-point-${i + 1}`} className="flex items-start gap-3">
               <div

@@ -7,9 +7,9 @@ import { motion } from 'framer-motion';
 
 export default function StatsSection() {
   const stats = [
-    { label: 'Staff', value: 200, suffix: '+' },
-    { label: 'Students', value: 1200, suffix: '+' },
-    { label: 'Trust Members', value: 500, suffix: '+' },
+    { label: 'Staff', value: 26, suffix: '+' },
+    { label: 'Students', value: 477, suffix: '+' },
+    { label: 'Trust Members', value: 11, suffix: '+' },
     { label: 'Years', value: 18 },
   ];
 

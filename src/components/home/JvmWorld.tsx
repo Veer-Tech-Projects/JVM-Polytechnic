@@ -8,12 +8,12 @@ import { Home, GraduationCap, Trophy, Utensils, BookOpen } from "lucide-react";
 const JvmWorld = () => {
   return (
     <SectionWrapper id="jvm-world" className="bg-white">
-      <div className="grid md:grid-cols-2 gap-6 md:gap-10 lg:gap-16 items-center relative">
+      <div className="grid md:grid-cols-2 gap-6 md:gap-10 lg:gap-16 items-start relative">
         {/* LEFT SIDE */}
         <div className="relative flex justify-center items-center">
           <div className="relative w-full max-w-[480px] md:max-w-[580px]">
             <Image
-              src="/images/gallery/college-students-2(2).png"
+              src="/images/gallery/jvm-world2.jpg"
               alt="JVM students"
               width={580}
               height={580}
@@ -41,7 +41,7 @@ const JvmWorld = () => {
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="relative flex flex-col justify-center text-gray-600 ml-2 md:ml-0 pr-2 md:pr-0">
+        <div className="relative flex flex-col text-gray-600 ml-2 md:ml-0 pr-2 md:pr-0 mt-4 md:mt-10">
           {/* Heading */}
           <h2 id="jvm-world-heading" className="text-2xl sm:text-3xl md:text-5xl font-bold mb-2 md:mb-4 text-left">
             <span className="text-gray-400">The </span>
@@ -54,10 +54,7 @@ const JvmWorld = () => {
             id="jvm-world-description"
             className="text-sm sm:text-sm md:text-base text-gray-500 leading-relaxed mb-4 md:mb-6 max-w-[600px] text-left"
           >
-            JVM Society embodies education, research, and healthcare, enriching
-            lives and empowering individuals to become responsible citizens.
-            Driven by perseverance, we offer diverse programs, making us a
-            preferred study and research destination.
+            JVM Society is dedicated to providing quality technical education with a focus on academic excellence, skill development, and ethical values. The institution aims to develop competent professionals and responsible citizens through a supportive and innovative learning environment.
           </p>
 
           {/* Facilities List */}

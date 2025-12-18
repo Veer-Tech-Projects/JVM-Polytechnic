@@ -6,9 +6,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Container from '@/components/layout/Container';
 
 const heroImages = [
-  '/images/hero/college1.jpg',
-  '/images/hero/events1.jpg',
-  '/images/hero/students1.jpg',
+  '/images/hero/jvm-banner-6.png',
+  '/images/hero/jvm-banner-1.png',
+  '/images/hero/jvm-banner-3.jpg',
+  '/images/hero/jvm-banner-4.jpg',
+  '/images/hero/jvm-banner-5.jpg',
 ];
 
 export default function Hero() {
@@ -116,10 +118,10 @@ export default function Hero() {
               "
             >
               <Image
-                src="/images/hero/jvm-logo2.png"
+                src="/images/hero/new-logo.png"
                 alt="JVM Polytechnic Logo"
                 fill
-                className="object-cover -translate-y-1"
+                className="object-cover -translate-y"
               />
             </div>
           </motion.div> 

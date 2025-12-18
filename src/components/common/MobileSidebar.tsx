@@ -51,7 +51,7 @@ export default function MobileSidebar({ open, onClose, navItems }: MobileSidebar
               <div className="flex items-center gap-3">
                 <div className="relative h-9 w-9">
                   <Image
-                    src="/images/logo/jvm-logo2.png"
+                    src="/images/logo/new-logo.png"
                     alt="JVM Polytechnic Logo"
                     fill
                     className="object-contain"
