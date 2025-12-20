@@ -8,13 +8,13 @@ import { motion } from 'framer-motion';
 export default function StatsSection() {
   const stats = [
     { label: 'Staff', value: 26, suffix: '+' },
-    { label: 'Students', value: 477, suffix: '+' },
+    { label: 'Students', value: 476, suffix: '+' },
     { label: 'Trust Members', value: 11, suffix: '+' },
     { label: 'Years', value: 18 },
   ];
 
   return (
-    <section className="bg-white py-0 md:py-15 ">
+    <section className="bg-white pt-0 pb-5 md:py-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -23,11 +23,11 @@ export default function StatsSection() {
         className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10 w-full px-4 sm:px-6 md:px-12"
       >
             {/* Logo */}
-        <div className="flex justify-center md:justify-start flex-shrink-0 mb-0 md:mb-0">
-          <div className="relative w-80 h-52 sm:w-64 sm:h-44 md:w-72 md:h-48 lg:w-80 lg:h-52 md:-translate-x-6 lg:-translate-x-8">
+        <div className="flex justify-center md:justify-start flex-shrink-0 translate-y-6 md:translate-y-8 lg:translate-y-10">
+          <div className="relative w-56 h-36 sm:w-52 sm:h-32 md:w-60 md:h-40 lg:w-64 lg:h-44 md:-translate-x-3 lg:-translate-x-5">
             <Image
-              src="/images/hero/jvm-banner-logo.png"
-              alt="KLE Society 109 years of Transforming Lives"
+              src="/images/logo/new-logo2.png"
+              alt="JVM Polytechnic 18 years of Transforming Lives"
               fill
               className="object-contain"
               priority
@@ -36,7 +36,7 @@ export default function StatsSection() {
         </div>
 
         {/* ✅ Centered Stats w/ Proper Barrier Spacing */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:flex justify-center items-center text-center gap-x-4 gap-y-6 md:gap-x-10 w-full max-w-sm sm:max-w-lg md:max-w-4xl ml-0 mr-auto px-2 sm:px-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:flex justify-center items-center text-center gap-x-4 gap-y-6 md:gap-x-10 w-full max-w-sm sm:max-w-lg md:max-w-4xl ml-0 mr-auto px-2 sm:px-4 translate-y-6 md:translate-y-0">
 
           {stats.map((s, i) => (
             <div
