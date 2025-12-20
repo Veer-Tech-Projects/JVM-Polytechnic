@@ -62,7 +62,7 @@ export default function Navbar() {
               <Link href="/" className="flex items-center gap-3">
                 <div className="relative h-12 w-12">
                   <Image
-                    src="/images/logo/new-logo.png"
+                    src="/images/hero/new-logo.png"
                     alt="JVM Polytechnic Logo"
                     fill
                     className="object-contain"
